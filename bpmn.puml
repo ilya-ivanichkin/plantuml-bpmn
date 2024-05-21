@@ -1,0 +1,259 @@
+@startuml
+
+'### Styles ###
+skinparam WrapWidth 150
+skinparam MaxMessageSize 100
+allowmixing
+skinparam RoundCorner 15
+hide stereotype
+
+skinparam DefaultTextAlignment<<start>> center
+skinparam rectangle<<start>> {
+    BackgroundColor none
+    BorderColor none
+}
+
+skinparam DefaultTextAlignment<<task>> left
+skinparam rectangle<<task>> {
+    BackgroundColor none
+}
+
+skinparam DefaultTextAlignment<<gateway>> center
+skinparam rectangle<<gateway>> {
+    BackgroundColor none
+    BorderColor none
+}
+
+skinparam DefaultTextAlignment<<end>> center
+skinparam rectangle<<end>> {
+    BackgroundColor none
+    BorderColor none
+}
+
+
+'### Sprites ###
+'# Gateways
+sprite $gateway_complex [48x48/16z] {
+    bLO5iaCn28G-JGBP-v_sk-vac2xjSznj2LlcPi_31W2RW9v0OXFGhui8QlJRx6Q26fq8QcNi0qYbcZj9gD4BWWAT20fq8YXD9I2Z2-uaeUQ-xoIXvkw0auHI
+    Tuzmjc7DVM_-ZZ_dnwNlB86LwUZ-ZUyTZLLYtVs3m3FzwvO82Fs3O9W1PWETZ5w6oGVQ8-BHC9m3jmvJGsG6sY9mhCmxs2C081uVZwHIuczK4NCc8W4W0pbd
+    u6-aaIg-gezeh-XFCLvoFkZvLkTpetmMwaMiHx7UnNuYzYkn7uhzLkpd-hpGvv4-x_HvgizhVH_Gzmrrdta5
+}
+
+sprite $gateway_eventbased [48x48/16z] {
+    b5C7RiCm4DEU5lZ_rtQt5vOM85zsp0cTtUt4jQ8xdmW0yG5y0Gln0RnM8np0ctFD22Tm8no4-VvgaGxKpU4CReH3k17EuKhGgZnSUgzUYZhirVq0XXU7dNf4
+    TwuZaiDUlI9_VcHKTL3ri11-lc45ShY3fn_L7-5418KtHFPjJ61umFJSoq-45m9N3IXEfY1OQGxZ4HGVu5yYyQdsglZQwQGNOA04nICP5LY6vq0Sn_2ymwD8
+    tS6xpGNozHz_POBpwcYW05bJSfYPyNcoEXCqq9Mt2yI1ECv-GMVcE0hd9Sf8-MyICbTL1p_6c3_pyTLlx_ZtmMqWLA9W-W6pnAAql29S7b9UtX8kpoclBp3h
+    8qhgEyBrAItgQqHxWFhj3SBj6G
+}
+
+sprite $gateway_exclusive [48x48/16z] {
+    bPQ54i8m44GZE5ps_xyMbyTCvJOZqFPjxBHCZXxHItvqIUe67bAe6_X-3y4wVYZb0442Xs1zCw-_sDBwx5WXWIS4m1C2uWa1Zeg1GoTcvmhPsRd2zEpr_tN5
+    2bEpxzNukccF5IPcbzI8IrXXugWD0ZnGG9mC_r90d1Hn2dYHu83pMZax1S2v0d4AnW1EGMZ2gcr8eqrOMk7oxdxCyvhtQThBz0VRttn_zkF5ZqS_tlryukSh
+    FnzIGDpCvtwzyEkHN-_yUkhNQxyVyFiDjv-v0G
+}
+
+sprite $gateway_inclusive [48x48/16z] {
+    bLQ7RWKn20DkSM_v_x-skxLoD1AsTeH7DlOlbkTpiJuMV60Hof_04ujGVXmaDChJB4deb9FG26DVOAI6EXrwvIGqoqdebvCmdofH9ZrNzmyKXvbwx0zyuB47
+    7URgdiWrt6DDfDDXeXuutNxW9s9mgEg1pOpO48D32VDRJW8ZrNBBqouuawjKoWD-hNS42TTjsjCASXysRjYcnrhhryUmSIodzu30iDDFyCpu4ByE7i1JhLVp
+    YFCLrrFSB_4yYETDFC_YVH7letZVnVT4VA_4zr1yRyNtNFylzFz8_-_q_rJ_h_L-GEytr7xc7G
+}
+
+sprite $gateway_none [48x48/16z] {
+    bPO53WCn30GjbS7A_rzRRgTyErR42o53VOrPzwpoc8rJp0IynsdD17orWX30rrLh20aSGh2PkWHR2jHn2E0H0NX409uGE2h1eKDr749r749r749r749r748u
+    X10E8OH3c3pg-w53THo0XuGUR6PwIwCjtkv7dbVUftml-H_aVvF_MUQBp4UPxxAUo7ebww6ijxAU-txX-v7lTxwV-dxjvm4_RzXvvWW
+}
+
+sprite $gateway_parallel [48x48/16z] {
+    bPO54iD030DzKAv7_tzj6JSe5vEi3CSnQYspnNfhajGCF7LxDmFVxI2On_SHUmWMS0Zcauc78QLvxuYmW4EmW4EmY5EmN6gK4YXwrdkH2YBCUOygrK24KU_a
+    6O7UoJC2lPDd1EBaAI1EdWBYv2bWgUHPDBsplnZXlrVhoqgN-lVgLv3wZXbDs7SiALtUpSUirsnFix_CyM2EDtCyc_F5d8_cV3VN4tEzCjT3SxqrrtD_l_3t
+    8t-_y_TJVx_spmF-USCzprm1
+}
+
+
+'# Tasks
+sprite $task_businessrule [21x16/16z] {
+    XSs50G0X2010M-dzf_tkF3i0Uc9FzEbEPM1oelQ4Kem9ur4YS8FcJc2yzDVBnvyOl0_WZm9o6qpJZZyB_L_YU0ddIoGO49nG3m
+}
+sprite $task_manual [21x16/16z] {
+    PSj5eaH124FHIqeflkn_jTtFzK0o2viQua4_MSvT3L4hLueAfN5LGf3-wyw0rfcOqagbGt8U1ZInCHy-VSH8RZnfE0SpapJL61pweiMFtdCrkjYLHVPChkpo
+    hFucm8jneSwik8z5H4mbu0i
+}
+
+sprite $task_receive [24x16/16z] {
+    fSi53iGm34JH7r0A7ZVtl-sMkQBz8kl9uzKwoRGtdfrLLrCpX5EGQoCHlN2fU4GAq8p7NlG6WiHO6lP96H9ZYy-J_VdiusIKnXCt7z6iWQUJ4a-V-yV36uVF
+    Vm-4HmHtsKlo7m
+}
+
+sprite $task_script [17x16/16z] {
+    PSr75WGX20JG0dDwTV_RZWAhdhzHCgv2jycX0EPICPqP5njSeRodDvIhgdeizt6ju3_nZ8hoI8n0cE7QnYVJfxzArN9bp0wJ3m9Jl09NQymWnqp-t5cuChiO
+    NI_MGHwwWki7
+}
+
+sprite $task_send [24x16/16z] {
+    ROq50e0m3CJcllN_loN3BNYkN4rg9Tyfd2rgfRoy6KufpHb4UXyhlOjuXMk1n2IImI0shfEbINFajf1Wi-73TIcLiMBdHnEfyyLMGRNrvsGGOHQRl5RYUMwr
+    eEDgDm-3Di-wrShb-QQzhO-dNzTmVlnQzkVXvYkRFdGfGtwfAVzHuW8
+}
+
+sprite $task_service [16x16/16z] {
+    FSq7ZWGW243H3zB4YTx_jXkslJGwZBo7V-7oTDj_cdaM6YOmF1cz2uOSv7cMF9jIFEEjD92qB8w21un9kfLqY3OeWvKzQo6jQ3UiBR2LcEO7f9wmJhHWrm4i
+    GKtW8umoVcGmsdilx5JzFjwwMgzOyAzlChu
+}
+
+sprite $task_user [15x16/16z] {
+    DOo50GGn20IZm9AJ_hjzzk4cEbWZ2mzM-v2NIDb0xzFiZDIrywdocMMxjE5_MozLupnKhL-30u-pMdLa72Eg9EPihBd0ZnucnfOz-3aUaZFu8jHB-OrZfPQA
+    KeHUxhU3y7r-
+}
+
+
+'# Sub Processes
+sprite $subprocess [16x16/16z] {
+    ROy53a0n24DROiJQ-v_skspDtXG7Qy8gy0CbOKBYzNPV3n-PDaSPzc0doYxmaTiFdNBuHxvblUmd-yrvSjuT
+}
+
+sprite $subprocess_loop [19x16/16z] {
+    LT255S0W40FGu7xPVzk-udpS1OChGhQeiEXArfo531ZCgfhAX9yYDQR4C0gBhLBzameEmmXOUboa0fu6byhHbUlfad-XWyYpyD-UwTaUaOd-kaIH54cQwwf9
+    -5FFWvJn-Q_4ifwzA5cVym4
+}
+
+sprite $subprocess_parallel [13x16/16z] {
+    u-NdP63WukTcOE3Wv-7Zvs9WuERdOM3WvEU5ShYHEJpqvn1s3eeN
+}
+
+'# Events
+sprite $start_none [48x48/16z] {
+    bTPLeYCX48NXWmGQAVxzxtRcMZmqV2rFk1Lw4L9ftNfl9GMTYTMuOpLg8XbVHc__zS4NI_eW6a3BmUcR2wa1s4Nl561ahmS-3w3gXJVWq1i7O5wF0j2ztl8T
+    Y2_9YpugGD2D1x8cCk1rPP0rbS7qfyAX4mVNKRf0qwbsxRE1roaFfYy9iXPaI99acCvT4qR8Mf8XIXMybhX1_VerBMgO0YGjoX2-FYqAa0h3ISiTA8skPPtM
+    QLhMw9lfRJzztsfFnRJCQBlZcVRcAtzzE-j1jhFUXbDPNiyUwiv-EI1ACiRgwDZEVZyWRPyd--VL_dae6IHD9R27jf7coH_x685ZsXY2xaMWpU9HqACmWFmf
+    jfZNYmhOQpmreEgToqkypjTuFRyFM6-js-2BPKt4OjmPDMhcUf_frbl9GI_-0G
+}
+
+sprite $start_message [48x48/16z] {
+    bPO7OkGW301bWy46YVd_QwznYM4XBfDi7veeGWPSEBAQQZw2apjyCXei-IixLBbe_eEMMYJyMBS1vEYM-dbn8GFODjKFeCHLEjPOW3JQgm6xJDW1MwN70RhA
+    b5K1F-Z7QBPTTMqDG9GB8j2qRbM_Bc3oHQeZlMG_exH1bblozvZjxDi5wrUFGjlvwo64MhtTowVec-gTd-2Q1hn8QdflZ9ojBuKaIsc2eqpG9aGc3aBl9xVz
+    nwVUZ-3-FdgVqFpU-Gx2GLaQFuTpkISWvCPV2aVzVFhYIrtkYqBnylcxadk_Ybiee8lqVaP7loxtkY46tsP-7MYKkQ-ZBvxYPEPhmYQ-hAjCV2D_nbC--8nd
+    0FVKTn3_FXfV_TRXzMCzYBrPRsMHu_5wNY6zsIzxtV56aISi1NkpttS8Ry-Jz-VL-_EmzYXSwm6iwnlXMk_7wBdiqdxcYwP0lif7JdfS-Id7n9hl1X9WOpur
+    8CcCRSZNiSdNL_S1qvpL2d-nA1VumsWeL_UDzZwZflc8JWP-0m
+}
+
+sprite $start_timer [48x48/16z] {
+    bLQ50kmW31ikfUJ_l_P9TzBHCt8wI6a8UXY4t6Zy0xKSZc-8dQ70BNvYvvCy1_q3ppCalsCdOLC9xX2uK4WYqajw1p2BlnRwCW5qo_OCe1mlK02mNqq1CAJG
+    mWy0mT3hyHPr2V1MYzMaihEbsm1MpXWn1lNfKWB6yHK3I0yrYpCkn1ZSuj9TKLx5PuA0qjg5V3O_TN5a04maFr7NJ4aGWR8OaPs8ocogefZZTPcsgbu2l5Z4
+    82K6o8_gB7rJaWXyX4iJh5eVB1duaZnaFJEogerdEIFfMPORfbC9ypCLdKqekMwY4SRp6NZ49lYrJFewL7nGScPzS8BAFpG_FlyFKEzKXHD_uJCD6itohHuD
+    guV0fhyQVkclzLF3-cd6oyZ9b_6oyq73peTtyqrWvzlN-PoN-VnolVYtwsL_FThrdkZS-IcRzRwvd-pkLvlxuUP-kxkVxvuN--VH_dctVvxkdzVsFi2N-y3E
+    VQD7Gzcxp_m5
+}
+
+sprite $end_none [48x48/16z] {
+    bPG5SWH124NRdU7-furJT2ypFxKlMSVDlU9JxNCHhTbBTF-HniKRrqWEK8WDL1vj4zz2zpuwFzAT8H03ABYJU37aYgSu7wmvnbYdYU2KmChLavTEz4tbyYfF
+    -ctrH_FgvlIcCiERTazJfSJ2RMiQ2_4bclpGzJEYejOVg6fmCp_S8sDpa4szB5xgcbItEW54r4MLBmVvao8NxGYYeiQYaI74R97UQhOmupwrKf35FqnvTGfg
+    mIBRBBIjzAxyCl8m7dettsxQY-jPT1SGibCrcd73yw2J1D6f76OPmKeEZGmwq7tHVMomMMgpCXvfNLakwWpKDF4PSc4X8N4joMIXWUF3OsksGFd5-Bexq8aL
+    ga6-3cMn4aq_11gzrZOMxsJJG4WsDOROoeN5Zwm0pxQ2Pzrtlg6ZmrqN7wpg7IRaDkdt5FHYu_u4
+}
+
+
+'### Procedures ###
+!unquoted procedure $start($alias, $description="", $type="")
+    !if $type == "message"
+        %set_variable_value("$sprite", "<$start_" + "message" + ">")
+    !elseif $type == "timer"
+        %set_variable_value("$sprite", "<$start_" + "timer" + ">")
+    !else
+        %set_variable_value("$sprite", "<$start_" + "none" + ">")
+    !endif
+    rectangle $alias<<start>> [
+        $sprite
+        $description
+    ]
+!endprocedure
+
+!unquoted procedure $task($alias, $description, $type="", $subtype="")
+    !if $type == "businessrule"
+        %set_variable_value("$sprite", "<$task_" + "businessrule" + ">")
+    !elseif $type == "manual"
+        %set_variable_value("$sprite", "<$task_" + "manual" + ">")
+    !elseif $type == "receive"
+        %set_variable_value("$sprite", "<$task_" + "receive" + ">")
+    !elseif $type == "script"
+        %set_variable_value("$sprite", "<$task_" + "script" + ">")
+    !elseif $type == "send"
+        %set_variable_value("$sprite", "<$task_" + "send" + ">")
+    !elseif $type == "service"
+        %set_variable_value("$sprite", "<$task_" + "service" + ">")
+    !elseif $type == "user"
+        %set_variable_value("$sprite", "<$task_" + "user" + ">")
+    !else
+        %set_variable_value("$sprite", "")
+    !endif
+
+    !if $subtype == "loop"
+        %set_variable_value("$sprite2", "<$subprocess_" + "loop" + "> <$subprocess>")
+    !elseif $subtype == "parallel"
+        %set_variable_value("$sprite2", "<$subprocess_" + "parallel" + "> <$subprocess>")
+    !elseif $subtype == "subprocess"
+        %set_variable_value("$sprite2", "<$subprocess>")
+    !else
+        %set_variable_value("$sprite2", "")
+    !endif
+
+    rectangle $alias<<task>> [
+        $sprite
+        $description
+        \t      $sprite2
+    ]
+!endprocedure
+
+!unquoted procedure $gateway($alias, $description, $type="")
+    !if $type == "exclusive"
+        %set_variable_value("$sprite", "<$gateway_" + "exclusive" + ">")
+    !elseif $type == "inclusive"
+        %set_variable_value("$sprite", "<$gateway_" + "inclusive" + ">")
+    !elseif $type == "complex"
+        %set_variable_value("$sprite", "<$gateway_" + "complex" + ">")
+    !elseif $type == "parallel"
+        %set_variable_value("$sprite", "<$gateway_" + "parallel" + ">")
+    !elseif $type == "eventbased"
+        %set_variable_value("$sprite", "<$gateway_" + "eventbased" + ">")
+    !else
+        %set_variable_value("$sprite", "<$gateway_" + "none" + ">")
+    !endif
+    rectangle $alias<<gateway>> [
+        $sprite
+        $description
+    ]
+!endprocedure
+
+!unquoted procedure $end($alias, $description="", $type="")
+    !if $type == ""
+        %set_variable_value("$sprite", "<$end_" + "none" + ">")
+    !else
+        %set_variable_value("$sprite", "<$end_" + "none" + ">")
+    !endif
+    rectangle $alias<<start>> [
+        $sprite
+        $description
+    ]
+!endprocedure
+
+!unquoted procedure $flow($source, $target, $direction="", $label="")
+    !if $direction == "l"
+        %set_variable_value("$direction_name", "left")
+    !elseif $direction == "r"
+        %set_variable_value("$direction_name", "right")
+    !elseif $direction == "u"
+        %set_variable_value("$direction_name", "up")
+    !elseif $direction == "d"
+        %set_variable_value("$direction_name", "down")
+    !else
+        %set_variable_value("$direction_name", "right")
+    !endif
+
+    !if $label != ""
+        %set_variable_value("$label_text", ":" + $label)
+    !else 
+        %set_variable_value("$label_text", "")
+    !endif
+
+    $source -$direction_name-> $target $label_text
+!endprocedure
+
+@enduml
